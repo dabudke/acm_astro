@@ -1,0 +1,20 @@
+---
+import Head from "../components/Head.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html>
+  <head>
+    <Head
+      title="About ACM@UC"
+      description="About ACM@UC"
+    />
+  </head>
+
+  <body>
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>
