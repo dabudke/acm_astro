@@ -1,0 +1,8 @@
+---
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths: GetStaticPaths = async () => {
+  return [{ params: { page: "page2" } }];
+};
+---
+
+<p>blog page 2s</p>
