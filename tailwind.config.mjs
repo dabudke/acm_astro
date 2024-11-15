@@ -33,5 +33,7 @@ export default {
 			display: ["Montserrat", "sans-serif"],
 		},
 	},
-	plugins: [],
+	plugins: [
+		require("@tailwindcss/typography"),
+	],
 }
