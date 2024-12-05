@@ -29,12 +29,14 @@ export default {
 			transitionDuration: "100ms",
 			aspectRatio: {
 				'3/2': '3 / 2',
-			},
+			}
 		},
 		fontFamily: {
 			sans: ['Open Sans', 'sans-serif'],
 			display: ["Montserrat", "sans-serif"],
 		},
 	},
-	plugins: [],
+	plugins: [
+		require("@tailwindcss/typography"),
+	],
 }

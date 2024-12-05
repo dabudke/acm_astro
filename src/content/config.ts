@@ -3,6 +3,26 @@ import { z } from "astro:schema";
 
 const blogCollection = defineCollection({
   type: "content",
+  schema: z.object({
+    title: z.string(),
+    date: z.date(),
+    author: z.string(),
+    imageURL: z.optional(z.string()),
+    tags: z.string().transform((val) => val.split(" ")),
+    synopsis: z.string(),
+
+    aboutAuthor: z.optional(
+      z.object({
+        class: z.optional(z.number().transform((val) => val.toString())),
+        photo: z.optional(z.string()),
+        github: z.optional(z.string()),
+        email: z.optional(z.string()),
+        website: z.optional(z.string()),
+        linkedin: z.optional(z.string()),
+        bio: z.optional(z.string()),
+      })
+    ),
+  }),
 });
 const membersCollection = defineCollection({
   type: "data",
