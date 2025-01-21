@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import AboutACM from "../components/AboutACM.astro";
+import MainInfoBoxes from "../components/MainInfoBoxes.astro";
+import Carousel from "../components/Carousel.astro";
+
+// import "../styles/index.scss";
+
+---
+
+<Layout
+  title="ACM@UC - Home"
+  description="ACM@UC Home Page"
+>
+    <!-- <Hero /> -->
+    <AboutACM />
+    <MainInfoBoxes />
+    <Carousel dir="ltr" />
+</Layout>

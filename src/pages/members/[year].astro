@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Head from "../../components/Head.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getEntry } from "astro:content";
+import Profile from "../../components/Profile.astro";
+import Layout from "../../layouts/Layout.astro";
+
+interface Props {
+  year: string;
+}
+
+export async function getStaticPaths() {
+  const allClasses = await getCollection("members");
+  return allClasses.map(({ id }) => {
+    const year = id.startsWith("alumni/") ? id.split("/")[1] : id;
+    return {
+      params: { year },
+      props: { year },
+    };
+  });
+}
+
+const { year } = Astro.props;
+const members = await getEntry("members", year);
+---
+
+<Layout
+  title={`Class of ${year}`}
+  description={`Members of ACM@UC from the class of ${year}`}
+>
+  <a
+    href="/members"
+    class="block mt-4 ml-16 uppercase !text-red font-display font-semibold hover:underline hover:!text-red-600"
+    >Back to Member List</a
+  >
+  <h1 class="mt-4 mx-8 mb-3 text-2xl">Class of {year} Members</h1>
+  <div class="mx-12 max-w-6xl">
+    {
+      members?.data?.map(({ name, short_bio, image_url, email, website, github, linkedin }) => (
+        <Profile
+          name={name}
+          imageUrl={image_url}
+          email={email}
+          website={website}
+          github={github}
+          linkedin={linkedin}
+          bio={short_bio}
+        />
+      ))
+    }
+  </div>
+</Layout>
