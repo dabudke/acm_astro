@@ -27,9 +27,7 @@ const { Content } = await meeting.render();
     <p class="text-lg">
       Date: {new Date(meeting.data.date).toISOString().split("T")[0]}
     </p>
-    {meeting.data.speaker && (
-      <p class="text-lg">Speaker: {meeting.data.speaker}</p>
-    )}
+    {meeting.data.speaker && <p class="text-lg">Speaker: {meeting.data.speaker}</p>}
     <hr class="my-4" />
     <article class="">
       <Content />
