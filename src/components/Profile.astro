@@ -21,15 +21,20 @@ const photo = image ?? `https://avatars.githubusercontent.com/${github}`;
 
 <div class="flex max-sm:flex-col max-sm:align-start sm:items-center gap-4">
   {
-    typeof photo == "string" ?
+    typeof photo == "string" ? (
       <Image
         class="max-sm:size-24 sm:size-40 rounded-full"
         src={photo}
         alt={name}
         inferSize
       />
-  :
-  <Image class="max-sm:size-24 sm:size-40 rounded-full" src={photo} alt={name} />
+    ) : (
+      <Image
+        class="max-sm:size-24 sm:size-40 rounded-full"
+        src={photo}
+        alt={name}
+      />
+    )
   }
   <div>
     <h3 class="mb-2.5">{name}{classOf && ` • Class of ${classOf}`}</h3>
