@@ -1,21 +1,19 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { render } from "astro:content";
 
 export async function getStaticPaths() {
   const meetings = await getCollection("meetings");
 
-  return meetings.map((meeting) => {
-    const slug = meeting.slug.split("/").pop();
-    return {
-      params: { meeting: slug },
-      props: { meeting },
-    };
-  });
+  return meetings.map((meeting) => ({
+    params: { meeting: meeting.id },
+    props: { meeting },
+  }));
 }
 
 const { meeting } = Astro.props;
-const { Content } = await meeting.render();
+const { Content } = await render(meeting);
 ---
 
 <Layout
@@ -27,9 +25,7 @@ const { Content } = await meeting.render();
     <p class="text-lg">
       Date: {new Date(meeting.data.date).toISOString().split("T")[0]}
     </p>
-    {meeting.data.speaker && (
-      <p class="text-lg">Speaker: {meeting.data.speaker}</p>
-    )}
+    {meeting.data.speaker && <p class="text-lg">Speaker: {meeting.data.speaker}</p>}
     <hr class="my-4" />
     <article class="">
       <Content />
